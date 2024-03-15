@@ -1,0 +1,9 @@
+<main [ngClass]="{'modalShown': showModal}">
+    <div class="content" [ngClass]="{'no-padding': noPadding}">
+        <ng-content></ng-content>
+    </div>
+    <div (click)="close()" class="close">
+        <img src="/assets/images/svg/cross-1.svg" alt="">
+    </div>
+    <div (click)="close()" class="background"></div>
+</main>

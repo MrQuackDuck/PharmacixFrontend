@@ -1,0 +1,27 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td data-title="ID">{{ user.id }}</td>
+                <td data-title="Title">{{ user.username }}</td>
+                <td data-title="Actions" class="actions">
+                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal-window [showModal]="createUserModalShown" (onClose)="closeNewUserModal()">
+    <h1>New user</h1>
+    <form>
+        
+    </form>
+</modal-window>

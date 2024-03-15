@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medicamentCategory of medicamentCategories">
+                <td data-title="ID">{{ medicamentCategory.id }}</td>
+                <td data-title="Name">{{ medicamentCategory.name }}</td>
+                <td data-title="Actions" class="actions">
+                    <div class="action-button-wrapper"><a class="button white">Edit</a></div>
+                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal-window [showModal]="createCategoryModalShown" (onClose)="closeNewCategoryModal()">
+    <h1>New medicament category</h1>
+    <form>
+        
+    </form>
+</modal-window>

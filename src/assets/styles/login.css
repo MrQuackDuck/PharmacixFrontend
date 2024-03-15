@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #BC1637;
+    padding-top: 8vh;
+}
+
+.login-block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 38px 45px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    width: 20vw;
+    min-width: 440px;
+}
+
+.login-block img {
+    height: 45px;
+}
+
+.login-block .error {
+    padding: 12px 15px;
+    background-color: #FFDBDB;
+    border: 3px solid #E01840;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 5px;
+    color: #E01840;
+}
+
+.login-block form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-block form input[type=text] {
+    padding: 10px 15px;
+    color: #DBDADA;
+    border: 2px solid #DBDADA;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+.login-block form input[type=text]:focus {
+    outline: 1px solid #DBDADA;
+}
+
+.login-block form input[type=text]::placeholder {
+    font-family: Inter;
+    color: #DBDADA;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.login-block form .control {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    gap: 10px;
+}
+
+.login-block form * {
+    width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .login-block {
+        width: 95%;
+        min-width: unset;
+        padding: 19px 22px;
+    }
+}

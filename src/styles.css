@@ -1,1 +1,261 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --light-gray: #D9D9D9;
+    --bright-red: #E01840;
+    --dark-red: #B90F0F;
+}
+
+/* GLOBAL STYLES */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+.disable-scroll {
+    position: fixed;
+    width: 100%;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("/fonts/Inter.woff2");
+}
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    font-family: Inter;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+}
+
+form input[type=text], form input[type=password] {
+    padding: 10px 15px;
+    color: #535353;
+    border: 2px solid #DBDADA;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+form input[type=text]:focus, form input[type=password]:focus {
+    outline: 1px solid #DBDADA;
+}
+
+form input[type=text]::placeholder, form input[type=password]::placeholder {
+    font-family: Inter;
+    color: #DBDADA;
+    font-weight: 500;
+    opacity: 1;
+}
+
+select {
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    border: 2px solid #DBDADA;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    color: #535353;
+    font-family: Inter;
+    appearance: none;
+}
+
+.select-wrapper::after {
+    content: " ";
+    background-image: url("assets/img/expand_more.svg");
+    position: absolute;
+    pointer-events: none;
+    top: 25%;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+select option {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BUTTON STYLES */
+.button {
+    font-family: Inter;
+    background-color: var(--bright-red);
+    border-width: 0px;
+    max-height: 40px;
+    padding: 8px 4px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    box-shadow: 0px 6px 0px var(--dark-red);
+    border-radius: 5px;
+    transition: .04s;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #f21c47;
+}
+
+.button:active {
+    background-color: var(--dark-red);
+    transform: translateY(6px);
+    box-shadow: 0px 0px 0px #1C3A68 !important;
+}
+
+.button.white {
+    color: #000;
+    background-color: #FFFFFF;
+    border: 2px solid var(--light-gray);
+    box-shadow: 0px 6px 0px var(--light-gray);
+}
+
+.button.white:hover {
+    background-color: #f8f8f8;
+}
+
+.button.white:active {
+    background-color: var(--light-gray);
+    border-color: var(--light-gray);
+}
+
+/* TABLE STYLES */
+.table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    overflow-x: auto;
+    border: 3px solid var(--light-gray);
+}
+
+table {
+    width: 100%;
+    border-radius: 10px !important;
+}
+
+table,thead,tbody,tr,th {
+    position: initial;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table,td,th {
+    border: 3px solid var(--light-gray);
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+}
+
+table,td:last-child,th:last-child {
+    border-right: none !important;
+}
+
+table thead, table thead th  { 
+    border-top: none !important;
+}
+
+table thead {
+    font-size: 22px;
+}
+
+table tbody {
+    font-size: 18px;
+}
+
+table tbody tr {
+    background-color: #FFFFFF;
+    border-bottom: 3px solid var(--light-gray);
+}
+
+table tbody tr:last-child {
+    border-bottom: none;
+}
+
+table thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+table thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+table tbody:last-child tr:last-child td:first-child { 
+    border-bottom-left-radius: 10px;
+}
+
+table tbody:last-child tr:last-child td:last-child { 
+    border-bottom-right-radius: 10px;
+}
+
+table thead {
+    border-bottom: 3px solid var(--light-gray);
+}
+
+table th {
+    padding: 16px;
+    text-align: center;
+}
+
+table td {
+    padding: 10px;
+}
+
+table .actions {
+    display: flex;
+    gap: 8px;
+}
+
+table .actions .action-button-wrapper {
+    display: block;
+    width: 100%;
+}
+
+table .actions .action-button-wrapper .button {
+    width: 100%;
+}
+
+@media screen and (max-width: 920px) {
+    .table-wrapper table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .table-wrapper table thead {
+        display: none;
+    }
+
+    .table-wrapper table tr {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .table-wrapper table td::before {
+        content: attr(data-title);
+        color: #545454;
+        font-size: 16px;
+        font-weight: bold;
+        padding-right: 10px;
+        display: block;
+        width: 100%;
+    }
+
+    .table-wrapper table .actions::before {
+        display: none;
+    }
+}

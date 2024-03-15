@@ -1,0 +1,33 @@
+.loading {
+	position: fixed;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	min-width: 100vw;
+	min-height: 100vh;
+	background-color: #FFF;
+    color: #FFFFFF;
+	z-index: 29;
+}
+
+.showLoading {
+  display: flex !important;
+}
+
+.loader {
+    margin: 0 0 2em;
+    text-align: center;
+    padding: 1em;
+    justify-content: center;
+    margin: 0 auto 1em;
+    display: none;
+    scale: 2.2;
+}
+  
+/*
+Set the color of the icon
+*/
+svg path, svg rect {
+    fill: var(--bright-red);
+}

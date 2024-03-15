@@ -1,0 +1,34 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medicament of medicines">
+                <td data-title="ID">{{ medicament.id }}</td>
+                <td data-title="Title">{{ medicament.title }}</td>
+                <td data-title="Category">{{ medicament.category.name }}</td>
+                <td data-title="Price">{{ medicament.price }}₴</td>
+                <td data-title="Amount">{{ medicament.amount }}</td>
+                <td data-title="Actions" class="actions">
+                    <div class="action-button-wrapper"><a class="button white">Edit</a></div>
+                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal-window [showModal]="createMedicamentModalShown" (onClose)="closeNewMedicamentModal()">
+    <h1>New medicament</h1>
+    <form>
+        
+    </form>
+</modal-window>
