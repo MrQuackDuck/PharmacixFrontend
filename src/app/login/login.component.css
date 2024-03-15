@@ -9,7 +9,7 @@ main {
 .login-block {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
     padding: 38px 45px;
     background-color: #FFFFFF;
     border-radius: 6px;
