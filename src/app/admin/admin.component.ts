@@ -18,6 +18,9 @@ export class AdminComponent {
 
   medicines : Medicament[];
 
+  successModalShown : boolean;
+  failModalShown : boolean;
+
   createNewMedicamentModalShown : boolean;
   createNewMedicamentCategoryModalShown : boolean;
   createNewUserModalShown : boolean;
@@ -59,9 +62,19 @@ export class AdminComponent {
     this.createNewUserModalShown = true;
   }
 
+  openSuccessModal() {
+    this.successModalShown = true;
+  }
+
+  openFailModal() {
+    this.failModalShown = true;
+  }
+
   closeAllModals() {
     this.createNewMedicamentModalShown = false;
     this.createNewMedicamentCategoryModalShown = false;
     this.createNewUserModalShown = false;
+    this.successModalShown = false;
+    this.failModalShown = false;
   }
 }

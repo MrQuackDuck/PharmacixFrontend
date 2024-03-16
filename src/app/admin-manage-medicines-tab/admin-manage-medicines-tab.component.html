@@ -27,18 +27,18 @@
 </div>
 
 <modal-window [showModal]="createMedicamentModalShown" (onClose)="closeNewMedicamentModal()">
-    <form>
+    <form (ngSubmit)="submitNewMedicament()" [formGroup]="newMedicamentForm">
         <h1>New medicament</h1>
         <hr/>
-        <input type="text" placeholder="Title">
+        <input formControlName="title" type="text" placeholder="Title">
         <div class="select-wrapper">
-            <select name="category" id="">
-                <option *ngFor="let category of medicamentCategories" value="{{ category.id }}">{{ category.name }}</option>
+            <select formControlName="categoryId">
+                <option *ngFor="let category of medicamentCategories" [value]="category.id">{{ category.name }}</option>
             </select>
         </div>
         <div class="flex-container">
-            <input type="text" placeholder="Price (₴)">
-            <input type="text" placeholder="Amount">
+            <input pattern="^\d+$" formControlName="price" type="text" placeholder="Price (₴)">
+            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="Amount">
         </div>
         <input class="button" type="submit" value="Create">
     </form>

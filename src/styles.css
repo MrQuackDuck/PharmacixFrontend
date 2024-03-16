@@ -158,6 +158,10 @@ modal-window form .flex-container {
     gap: 15px;
 }
 
+modal-window form.ng-submitted .ng-invalid {
+    border: 2px solid var(--bright-red);
+}
+
 modal-window hr {
     border: none;
     height: 3px;
