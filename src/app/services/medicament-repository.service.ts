@@ -5,6 +5,7 @@ import { API_URL } from 'src/globals';
 import { CreateMedicamentModel } from '../models/requestModels/createMedicament';
 import { EditMedicamentModel } from '../models/requestModels/editMedicament';
 import { Observable } from 'rxjs';
+import { DeleteMedicamentModel } from '../models/requestModels/deleteMedicament';
 
 @Injectable({
   providedIn: 'root'
@@ -42,16 +43,16 @@ export class MedicamentRepositoryService {
     let price = medicamentModel.price;
     let categoryId = medicamentModel.categoryId;
 
-    return this.httpClient.post<any>(`${API_URL}/API/Medicament/Edit`, 
+    return this.httpClient.put<any>(`${API_URL}/API/Medicament/Edit`, 
     { id, title, amount, price, categoryId },
     { withCredentials: true });
   }
 
-  delete(id : number) : Observable<boolean> { 
-    return this.httpClient.get<any>(`${API_URL}/API/Medicament/Delete`, { 
-      params: { 
-        "id": id
-      }, withCredentials: true
-    })
+  delete(medicamentModel : DeleteMedicamentModel) : Observable<boolean> { 
+    let id = medicamentModel.id;
+
+    return this.httpClient.post<any>(`${API_URL}/API/Medicament/Delete`, 
+    { id },
+    { withCredentials: true });
   }
 }

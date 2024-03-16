@@ -20,15 +20,21 @@
 
                 <admin-manage-medicament-categories-tab
                     (onModalClose)="closeAllModals()"
+                    (onSuccess)="openSuccessModal()"
+                    (onFail)="openFailModal()"
                     [createCategoryModalShown]="createNewMedicamentCategoryModalShown"
                     *ngIf="activeTab == TabType.MedicamentCategories"/>
 
                 <admin-manage-users-tab
                     (onModalClose)="closeAllModals()"
+                    (onSuccess)="openSuccessModal()"
+                    (onFail)="openFailModal()"
                     [createUserModalShown]="createNewUserModalShown"
                     *ngIf="activeTab == TabType.Users"/>
 
-                <admin-misc-tab *ngIf="activeTab == TabType.Misc"/>
+                <admin-misc-tab
+                    (onFail)="openFailModal()"
+                    *ngIf="activeTab == TabType.Misc"/>
             </div>
 
             <aside>

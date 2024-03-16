@@ -5,6 +5,7 @@ import { LoadingService } from '../services/loading.service';
 import { MedicamentCategoryRepositoryService } from '../services/medicament-category-repository.service';
 import { MedicamentCategory } from '../models/medicamentCategory';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DeleteMedicamentModel } from '../models/requestModels/deleteMedicament';
 
 @Component({
   selector: 'admin-manage-medicines-tab',
@@ -23,10 +24,6 @@ export class AdminManageMedicinesTabComponent {
   @Output()
   onFail: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  closeNewMedicamentModal() {
-    this.onModalClose.emit();
-  }
-
   @Input()
   createMedicamentModalShown : boolean;
 
@@ -34,28 +31,50 @@ export class AdminManageMedicinesTabComponent {
   deleteMedicamentModalShown : boolean;
 
   newMedicamentForm : FormGroup
+  editMedicamentForm : FormGroup
 
   medicines : Medicament[];
   medicamentCategories : MedicamentCategory[];
 
+  // Used to store object that is maybe going
+  // to be deleted (if user will confirm his choice in modal window)
+  medicamentToDelete : Medicament;
+
   category = null;
 
   ngOnInit() {
-    this.newMedicamentForm = this.formBuilder.group({
+    this.updateData();
+    
+    this.editMedicamentForm = this.formBuilder.group({
       title: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
       amount: new FormControl(null, Validators.required),
       categoryId: new FormControl(1, Validators.required),
     });
+  }
 
-    this.updateData();
+  showEditModal(medicament : Medicament) {
+    this.editMedicamentForm = this.formBuilder.group({
+      id: new FormControl(medicament.id, Validators.required),
+      title: new FormControl(medicament.title, Validators.required),
+      price: new FormControl(medicament.price, Validators.required),
+      amount: new FormControl(medicament.amount, Validators.required),
+      categoryId: new FormControl(medicament.category.id, Validators.required),
+    });
+
+    this.editMedicamentModalShown = true;
+  }
+
+  showDeleteModal(medicament : Medicament) {
+    this.deleteMedicamentModalShown = true;
+    this.medicamentToDelete = medicament;
   }
 
   submitNewMedicament() {
     if (!this.newMedicamentForm.valid) return;
 
     this.loadingService.enableLoading();
-    this.onModalClose.emit();
+    this.closeAllModals();
     
     this.medicamentRepository.create(this.newMedicamentForm.getRawValue()).subscribe(
       success => {
@@ -71,11 +90,63 @@ export class AdminManageMedicinesTabComponent {
     )
   }
 
+  submitEditedMedicament() {
+    if (!this.editMedicamentForm.valid) return;
+
+    this.loadingService.enableLoading();
+    this.closeAllModals();
+    
+    this.medicamentRepository.edit(this.editMedicamentForm.getRawValue()).subscribe(
+      success => {
+        this.updateData()
+        this.onSuccess.emit();
+        this.editMedicamentForm.reset();
+        this.editMedicamentForm.markAsUntouched();
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.onFail.emit();
+      }
+    )
+  }
+
+  confirmDelete() {
+    this.loadingService.enableLoading();
+    this.closeAllModals();
+
+    let model = new DeleteMedicamentModel();
+    model.id = this.medicamentToDelete.id;
+    
+    this.medicamentRepository.delete(model).subscribe(
+      success => {
+        this.updateData()
+        this.onSuccess.emit();
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.onFail.emit();
+      }
+    )
+  }
+
+  closeAllModals() {
+    this.onModalClose.emit();
+    this.editMedicamentModalShown = false;
+    this.deleteMedicamentModalShown = false;
+  }
+
   updateData() {
     this.loadingService.enableLoading();
 
     this.medicamentCategoryRepository.getAll().subscribe(result => {
       this.medicamentCategories = result;
+
+      this.newMedicamentForm = this.formBuilder.group({
+        title: new FormControl(null, Validators.required),
+        price: new FormControl(null, Validators.required),
+        amount: new FormControl(null, Validators.required),
+        categoryId: new FormControl(this.medicamentCategories.length == 0 ? 0 : this.medicamentCategories[0].id, Validators.required),
+      });
     })
 
     this.medicamentRepository.getAll().subscribe(result => {

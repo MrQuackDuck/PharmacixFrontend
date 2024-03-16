@@ -31,6 +31,7 @@ export class AdminComponent {
   }
 
   setTab(tab : TabType) {
+    this.loadingService.enableLoading();
     this.activeTab = tab;
   }
 

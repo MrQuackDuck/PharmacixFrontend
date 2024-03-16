@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { API_URL } from 'src/globals';
 import { CreateUserModel } from '../models/requestModels/createUser';
 import { HttpClient } from '@angular/common/http';
+import { DeleteUserModel } from '../models/requestModels/deleteUser';
 
 @Injectable({
   providedIn: 'root'
@@ -25,17 +26,18 @@ export class UserRepositoryService {
 
   create(userModel : CreateUserModel) : Observable<boolean> {
     let username = userModel.username;
+    let password = userModel.password;
 
     return this.httpClient.post<any>(`${API_URL}/API/User/Create`, 
-    { username },
+    { username, password },
     { withCredentials: true });
   }
 
-  delete(id : number) : Observable<boolean> { 
-    return this.httpClient.get<any>(`${API_URL}/API/User/Delete`, { 
-      params: { 
-        "id": id
-      }, withCredentials: true
-    })
+  delete(userModel : DeleteUserModel) : Observable<boolean> { 
+    let id = userModel.id;
+
+    return this.httpClient.post<any>(`${API_URL}/API/User/Delete`, 
+    { id },
+    { withCredentials: true });
   }
 }

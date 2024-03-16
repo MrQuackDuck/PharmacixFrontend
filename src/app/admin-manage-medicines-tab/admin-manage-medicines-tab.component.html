@@ -1,5 +1,5 @@
 <div class="table-wrapper">
-    <table>
+    <table *ngIf="medicines">
         <thead>
             <tr>
                 <th>ID</th>
@@ -11,6 +11,12 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="medicines.length == 0">
+                <th colspan="6">
+                    Nothing here yet!
+                </th>
+            </tr>
+
             <tr *ngFor="let medicament of medicines">
                 <td data-title="ID">{{ medicament.id }}</td>
                 <td data-title="Title">{{ medicament.title }}</td>
@@ -18,16 +24,16 @@
                 <td data-title="Price">{{ medicament.price }}₴</td>
                 <td data-title="Amount">{{ medicament.amount }}</td>
                 <td data-title="Actions" class="actions">
-                    <div class="action-button-wrapper"><a class="button white">Edit</a></div>
-                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                    <div class="action-button-wrapper"><a (click)="showEditModal(medicament)" class="button white">Edit</a></div>
+                    <div class="action-button-wrapper"><a (click)="showDeleteModal(medicament)" class="button">Delete</a></div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<modal-window [showModal]="createMedicamentModalShown" (onClose)="closeNewMedicamentModal()">
-    <form (ngSubmit)="submitNewMedicament()" [formGroup]="newMedicamentForm">
+<modal-window [showModal]="createMedicamentModalShown" (onClose)="closeAllModals()">
+    <form  *ngIf="medicamentCategories" (ngSubmit)="submitNewMedicament()" [formGroup]="newMedicamentForm">
         <h1>New medicament</h1>
         <hr/>
         <input formControlName="title" type="text" placeholder="Title">
@@ -36,10 +42,39 @@
                 <option *ngFor="let category of medicamentCategories" [value]="category.id">{{ category.name }}</option>
             </select>
         </div>
-        <div class="flex-container">
+        <div class="flex-row-container">
             <input pattern="^\d+$" formControlName="price" type="text" placeholder="Price (₴)">
             <input pattern="^\d+$" formControlName="amount" type="text" placeholder="Amount">
         </div>
         <input class="button" type="submit" value="Create">
     </form>
+</modal-window>
+
+<modal-window [showModal]="editMedicamentModalShown" (onClose)="closeAllModals()">
+    <form (ngSubmit)="submitEditedMedicament()" [formGroup]="editMedicamentForm">
+        <h1>Edit medicament</h1>
+        <hr/>
+        <input formControlName="title" type="text" placeholder="Title">
+        <div class="select-wrapper">
+            <select formControlName="categoryId">
+                <option *ngFor="let category of medicamentCategories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="flex-row-container">
+            <input pattern="^\d+$" formControlName="price" type="text" placeholder="Price (₴)">
+            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="Amount">
+        </div>
+        <input class="button" type="submit" value="Confirm">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="deleteMedicamentModalShown" (onClose)="closeAllModals()">
+    <div class="flex-column-container">
+        <h1>Delete medicament?</h1>
+        <hr/>
+        <div class="flex-row-container">
+            <a (click)="closeAllModals()" class="button white">Cancel</a>
+            <a (click)="confirmDelete()" class="button">Confirm</a>
+        </div>
+    </div>
 </modal-window>

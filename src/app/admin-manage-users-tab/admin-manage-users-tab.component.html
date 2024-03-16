@@ -1,5 +1,5 @@
 <div class="table-wrapper">
-    <table>
+    <table *ngIf="users">
         <thead>
             <tr>
                 <th>ID</th>
@@ -8,20 +8,40 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="users.length == 0">
+                <th colspan="6">
+                    Nothing here yet!
+                </th>
+            </tr>
+
             <tr *ngFor="let user of users">
                 <td data-title="ID">{{ user.id }}</td>
                 <td data-title="Title">{{ user.username }}</td>
                 <td data-title="Actions" class="actions">
-                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                    <div class="action-button-wrapper"><a (click)="showDeleteModal(user)" class="button">Delete</a></div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<modal-window [showModal]="createUserModalShown" (onClose)="closeNewUserModal()">
-    <h1>New user</h1>
-    <form>
-        
+<modal-window [showModal]="createUserModalShown" (onClose)="closeAllModals()">
+    <form (ngSubmit)="submitNewUser()" [formGroup]="newUserForm">
+        <h1>New user</h1>
+        <hr/>
+        <input formControlName="username" type="text" placeholder="Username">
+        <input formControlName="password" type="text" placeholder="Password">
+        <input class="button" type="submit" value="Create">
     </form>
+</modal-window>
+
+<modal-window [showModal]="deleteUserModalShown" (onClose)="closeAllModals()">
+    <div class="flex-column-container">
+        <h1>Delete user?</h1>
+        <hr/>
+        <div class="flex-row-container">
+            <a (click)="closeAllModals()" class="button white">Cancel</a>
+            <a (click)="confirmDelete()" class="button">Confirm</a>
+        </div>
+    </div>
 </modal-window>

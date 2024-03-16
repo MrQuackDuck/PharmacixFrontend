@@ -1,5 +1,5 @@
 <div class="table-wrapper">
-    <table>
+    <table *ngIf="medicamentCategories">
         <thead>
             <tr>
                 <th>ID</th>
@@ -8,21 +8,51 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let medicamentCategory of medicamentCategories">
-                <td data-title="ID">{{ medicamentCategory.id }}</td>
-                <td data-title="Name">{{ medicamentCategory.name }}</td>
+            <tr *ngIf="medicamentCategories.length == 0">
+                <th colspan="6">
+                    Nothing here yet!
+                </th>
+            </tr>
+
+            <tr *ngFor="let category of medicamentCategories">
+                <td data-title="ID">{{ category.id }}</td>
+                <td data-title="Name">{{ category.name }}</td>
                 <td data-title="Actions" class="actions">
-                    <div class="action-button-wrapper"><a class="button white">Edit</a></div>
-                    <div class="action-button-wrapper"><a class="button">Delete</a></div>
+                    <div class="action-button-wrapper"><a (click)="showEditModal(category)" class="button white">Edit</a></div>
+                    <div class="action-button-wrapper"><a (click)="showDeleteModal(category)" class="button">Delete</a></div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<modal-window [showModal]="createCategoryModalShown" (onClose)="closeNewCategoryModal()">
-    <h1>New medicament category</h1>
-    <form>
-        
+<modal-window [showModal]="createCategoryModalShown" (onClose)="closeAllModals()">
+    <form (ngSubmit)="submitNewCategory()" [formGroup]="newCategoryForm">
+        <h1>New category</h1>
+        <hr/>
+        <input formControlName="name" type="text" placeholder="Title">
+        <input class="button" type="submit" value="Create">
     </form>
+</modal-window>
+
+
+<modal-window [showModal]="editCategoryModalShown" (onClose)="closeAllModals()">
+    <form (ngSubmit)="submitEditedCategory()" [formGroup]="editCategoryForm">
+        <h1>Edit category</h1>
+        <hr/>
+        <input formControlName="name" type="text" placeholder="Name">
+        <input class="button" type="submit" value="Confirm">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="deleteCategoryModalShown" (onClose)="closeAllModals()">
+    <div class="flex-column-container">
+        <h1>Delete category?</h1>
+        <hr/>
+        <span>This will make disappear all medicines that use that category!</span>
+        <div class="flex-row-container">
+            <a (click)="closeAllModals()" class="button white">Cancel</a>
+            <a (click)="confirmDelete()" class="button">Confirm</a>
+        </div>
+    </div>
 </modal-window>
