@@ -1,8 +1,14 @@
 :root {
     --light-gray: #D9D9D9;
     --bright-red: #E01840;
+    --pinky-red: #BC1637;
     --brighter-red: #F21C47;
     --dark-red: #B90F0F;
+}
+
+*::selection {
+    background-color: var(--bright-red);
+    color: #FFFFFF;
 }
 
 /* GLOBAL STYLES */

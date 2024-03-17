@@ -1,56 +1,68 @@
 <body>
-    <header>
-        <a href="#" draggable="false"><img src="/assets/img/logo-full.svg" alt="Logo" draggable="false"></a>
-    </header>
-
-    <main>
-        <div class="new-section">
-            <div class="empty"></div>
-            <a (click)="openNewModal()" class="button" draggable="false">New</a>
-        </div>
-
-        <div class="container">
-            <div class="main-side">
-                <admin-manage-medicines-tab 
-                    (onModalClose)="closeAllModals()"
-                    (onSuccess)="openSuccessModal()"
-                    (onFail)="openFailModal()"
-                    [createMedicamentModalShown]="createNewMedicamentModalShown"
-                    *ngIf="activeTab == TabType.Medicines"/>
-
-                <admin-manage-medicament-categories-tab
-                    (onModalClose)="closeAllModals()"
-                    (onSuccess)="openSuccessModal()"
-                    (onFail)="openFailModal()"
-                    [createCategoryModalShown]="createNewMedicamentCategoryModalShown"
-                    *ngIf="activeTab == TabType.MedicamentCategories"/>
-
-                <admin-manage-users-tab
-                    (onModalClose)="closeAllModals()"
-                    (onSuccess)="openSuccessModal()"
-                    (onFail)="openFailModal()"
-                    [createUserModalShown]="createNewUserModalShown"
-                    *ngIf="activeTab == TabType.Users"/>
-
-                <admin-misc-tab
-                    (onFail)="openFailModal()"
-                    *ngIf="activeTab == TabType.Misc"/>
+    <div class="wrapper">
+        <header>
+            <a href="#" draggable="false"><img src="/assets/img/logo-full.svg" alt="Logo" draggable="false"></a>
+        </header>
+    
+        <main>
+            <div class="new-section">
+                <div class="empty"></div>
+                <a (click)="openNewModal()" class="button" draggable="false">{{ 'NEW' | translate }}</a>
             </div>
+    
+            <div class="container">
+                <div class="main-side">
+                    <admin-manage-medicines-tab 
+                        (onModalClose)="closeAllModals()"
+                        (onSuccess)="openSuccessModal()"
+                        (onFail)="openFailModal()"
+                        [createMedicamentModalShown]="createNewMedicamentModalShown"
+                        *ngIf="activeTab == TabType.Medicines"/>
+    
+                    <admin-manage-medicament-categories-tab
+                        (onModalClose)="closeAllModals()"
+                        (onSuccess)="openSuccessModal()"
+                        (onFail)="openFailModal()"
+                        [createCategoryModalShown]="createNewMedicamentCategoryModalShown"
+                        *ngIf="activeTab == TabType.MedicamentCategories"/>
+    
+                    <admin-manage-users-tab
+                        (onModalClose)="closeAllModals()"
+                        (onSuccess)="openSuccessModal()"
+                        (onFail)="openFailModal()"
+                        [createUserModalShown]="createNewUserModalShown"
+                        *ngIf="activeTab == TabType.Users"/>
+    
+                    <admin-misc-tab
+                        (onFail)="openFailModal()"
+                        *ngIf="activeTab == TabType.Misc"/>
+                </div>
+    
+                <aside>
+                    <a (click)="setTab(0)" [ngClass]="{ 'active': activeTab == TabType.Medicines }">{{ 'MEDICINES' | translate }}</a>
+                    <a (click)="setTab(1)" [ngClass]="{ 'active': activeTab == TabType.MedicamentCategories }">{{ 'CATEGORIES' | translate }}</a>
+                    <a (click)="setTab(2)" [ngClass]="{ 'active': activeTab == TabType.Users }">{{ 'USERS' | translate }}</a>
+                    <a (click)="setTab(3)" [ngClass]="{ 'active': activeTab == TabType.Misc }">{{ 'MISC' | translate }}</a>
+                </aside>
+            </div>
+        </main>
 
-            <aside>
-                <a (click)="setTab(0)" [ngClass]="{ 'active': activeTab == TabType.Medicines }">Medicines</a>
-                <a (click)="setTab(1)" [ngClass]="{ 'active': activeTab == TabType.MedicamentCategories }">Categories</a>
-                <a (click)="setTab(2)" [ngClass]="{ 'active': activeTab == TabType.Users }">Users</a>
-                <a (click)="setTab(3)" [ngClass]="{ 'active': activeTab == TabType.Misc }">Misc</a>
-            </aside>
-        </div>
-    </main>
+        <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+            <div class="flex-column-container">
+                <h1>{{ 'SUCCESS' | translate }}</h1>
+                <hr>
+                <span>{{ 'SUCCESS_DESCRIPTION' | translate }}</span>
+            </div>
+        </modal-window>
+        
+        <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+            <div class="flex-column-container">
+                <h1>{{ 'FAIL' | translate }}</h1>
+                <hr>
+                <span>{{ 'FAIL_DESCRIPTION' | translate }}</span>
+            </div>
+        </modal-window>
+    </div>
+
+    <app-footer></app-footer>
 </body>
-
-<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1>Success!</h1>
-</modal-window>
-
-<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1>Fail!</h1>
-</modal-window>

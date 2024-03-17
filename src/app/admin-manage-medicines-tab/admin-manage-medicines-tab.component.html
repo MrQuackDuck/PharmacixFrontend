@@ -3,17 +3,17 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Amount</th>
-                <th>Actions</th>
+                <th>{{ 'TITLE' | translate }}</th>
+                <th>{{ 'CATEGORY' | translate }}</th>
+                <th>{{ 'PRICE' | translate }}</th>
+                <th>{{ 'AMOUNT' | translate }}</th>
+                <th>{{ 'ACTIONS' | translate }}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="medicines.length == 0">
                 <th colspan="6">
-                    Nothing here yet!
+                    {{ 'NOTHING_HERE_YET' | translate }}
                 </th>
             </tr>
 
@@ -24,8 +24,8 @@
                 <td data-title="Price">{{ medicament.price }}₴</td>
                 <td data-title="Amount">{{ medicament.amount }}</td>
                 <td data-title="Actions" class="actions">
-                    <div class="action-button-wrapper"><a (click)="showEditModal(medicament)" class="button white">Edit</a></div>
-                    <div class="action-button-wrapper"><a (click)="showDeleteModal(medicament)" class="button">Delete</a></div>
+                    <div class="action-button-wrapper"><a (click)="showEditModal(medicament)" class="button white">{{ 'EDIT' | translate }}</a></div>
+                    <div class="action-button-wrapper"><a (click)="showDeleteModal(medicament)" class="button">{{ 'DELETE' | translate }}</a></div>
                 </td>
             </tr>
         </tbody>
@@ -34,47 +34,47 @@
 
 <modal-window [showModal]="createMedicamentModalShown" (onClose)="closeAllModals()">
     <form  *ngIf="medicamentCategories" (ngSubmit)="submitNewMedicament()" [formGroup]="newMedicamentForm">
-        <h1>New medicament</h1>
+        <h1>{{ 'NEW_MEDICAMENT' | translate }}</h1>
         <hr/>
-        <input formControlName="title" type="text" placeholder="Title">
+        <input formControlName="title" type="text" placeholder="{{ 'TITLE' | translate }}">
         <div class="select-wrapper">
             <select formControlName="categoryId">
                 <option *ngFor="let category of medicamentCategories" [value]="category.id">{{ category.name }}</option>
             </select>
         </div>
         <div class="flex-row-container">
-            <input pattern="^\d+$" formControlName="price" type="text" placeholder="Price (₴)">
-            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="Amount">
+            <input pattern="^\d+$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
+            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="{{ 'AMOUNT' | translate }}">
         </div>
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" value="{{ 'CREATE' | translate }}">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editMedicamentModalShown" (onClose)="closeAllModals()">
     <form (ngSubmit)="submitEditedMedicament()" [formGroup]="editMedicamentForm">
-        <h1>Edit medicament</h1>
+        <h1>{{ 'EDIT_MEDICAMENT' | translate }}</h1>
         <hr/>
-        <input formControlName="title" type="text" placeholder="Title">
+        <input formControlName="title" type="text" placeholder="{{ 'TITLE' | translate }}">
         <div class="select-wrapper">
             <select formControlName="categoryId">
                 <option *ngFor="let category of medicamentCategories" [value]="category.id">{{ category.name }}</option>
             </select>
         </div>
         <div class="flex-row-container">
-            <input pattern="^\d+$" formControlName="price" type="text" placeholder="Price (₴)">
-            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="Amount">
+            <input pattern="^\d+$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
+            <input pattern="^\d+$" formControlName="amount" type="text" placeholder="{{ 'AMOUNT' | translate }}">
         </div>
-        <input class="button" type="submit" value="Confirm">
+        <input class="button" type="submit" value="{{ 'CONFIRM' | translate }}">
     </form>
 </modal-window>
 
 <modal-window [showModal]="deleteMedicamentModalShown" (onClose)="closeAllModals()">
     <div class="flex-column-container">
-        <h1>Delete medicament?</h1>
+        <h1>{{ 'DELETE_MEDICAMENT_QUESTION' | translate }}</h1>
         <hr/>
         <div class="flex-row-container">
-            <a (click)="closeAllModals()" class="button white">Cancel</a>
-            <a (click)="confirmDelete()" class="button">Confirm</a>
+            <a (click)="closeAllModals()" class="button white">{{ 'CANCEL' | translate }}</a>
+            <a (click)="confirmDelete()" class="button">{{ 'CONFIRM' | translate }}</a>
         </div>
     </div>
 </modal-window>

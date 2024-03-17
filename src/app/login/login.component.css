@@ -1,7 +1,7 @@
 main {
     display: flex;
     justify-content: center;
-    background-color: #BC1637;
+    background-color: var(--pinky-red);
     padding-top: 8vh;
     height: 100vh;
 }
@@ -19,6 +19,7 @@ main {
 }
 
 .login-block img {
+    user-select: none;
     height: 45px;
 }
 

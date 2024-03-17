@@ -1,0 +1,35 @@
+footer {
+    min-height: 90px;
+    background: var(--pinky-red);
+    display: flex;
+    position: relative;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    padding: 3.1vh 5.5vw;
+    overflow-x: hidden;
+    z-index: 30;
+    overflow: visible;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container:last-child span {
+    text-align: right;
+}
+
+span {
+    width: 100%;
+    text-align: left;
+}
+
+span a {
+    color: white;
+}

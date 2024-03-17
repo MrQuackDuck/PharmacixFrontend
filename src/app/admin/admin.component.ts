@@ -10,7 +10,7 @@ import { TabType } from './tabType';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  constructor(private loadingService : LoadingService, private medicamentRepository : MedicamentRepositoryService) { }
+  constructor(private loadingService : LoadingService) { }
 
   public activeTab : TabType;
 
@@ -31,7 +31,6 @@ export class AdminComponent {
   }
 
   setTab(tab : TabType) {
-    this.loadingService.enableLoading();
     this.activeTab = tab;
   }
 

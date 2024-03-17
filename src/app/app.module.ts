@@ -14,6 +14,8 @@ import { AdminMiscTabComponent } from './admin-misc-tab/admin-misc-tab.component
 import { AdminManageUsersTabComponent } from './admin-manage-users-tab/admin-manage-users-tab.component';
 import { AdminGuard } from './admin/admin-panel.guard';
 import { ModalComponent } from './modal/modal.component';
+import { TranslatePipe } from './pipes/translate.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ModalComponent } from './modal/modal.component';
     AdminMiscTabComponent,
     AdminManageUsersTabComponent,
     ModalComponent,
+    TranslatePipe,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

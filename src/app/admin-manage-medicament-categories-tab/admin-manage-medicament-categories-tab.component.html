@@ -3,14 +3,14 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>{{ 'NAME' | translate }}</th>
+                <th>{{ 'ACTIONS' | translate }}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="medicamentCategories.length == 0">
                 <th colspan="6">
-                    Nothing here yet!
+                    {{ 'NOTHING_HERE_YET' | translate }}
                 </th>
             </tr>
 
@@ -18,8 +18,8 @@
                 <td data-title="ID">{{ category.id }}</td>
                 <td data-title="Name">{{ category.name }}</td>
                 <td data-title="Actions" class="actions">
-                    <div class="action-button-wrapper"><a (click)="showEditModal(category)" class="button white">Edit</a></div>
-                    <div class="action-button-wrapper"><a (click)="showDeleteModal(category)" class="button">Delete</a></div>
+                    <div class="action-button-wrapper"><a (click)="showEditModal(category)" class="button white">{{ 'EDIT' | translate }}</a></div>
+                    <div class="action-button-wrapper"><a (click)="showDeleteModal(category)" class="button">{{ 'DELETE' | translate }}</a></div>
                 </td>
             </tr>
         </tbody>
@@ -28,31 +28,31 @@
 
 <modal-window [showModal]="createCategoryModalShown" (onClose)="closeAllModals()">
     <form (ngSubmit)="submitNewCategory()" [formGroup]="newCategoryForm">
-        <h1>New category</h1>
+        <h1>{{ 'NEW_CATEGORY' | translate }}</h1>
         <hr/>
-        <input formControlName="name" type="text" placeholder="Title">
-        <input class="button" type="submit" value="Create">
+        <input formControlName="name" type="text" placeholder="{{ 'NAME' | translate }}">
+        <input class="button" type="submit" value="{{ 'CREATE' | translate }}">
     </form>
 </modal-window>
 
 
 <modal-window [showModal]="editCategoryModalShown" (onClose)="closeAllModals()">
     <form (ngSubmit)="submitEditedCategory()" [formGroup]="editCategoryForm">
-        <h1>Edit category</h1>
+        <h1>{{ 'EDIT_CATEGORY' | translate }}</h1>
         <hr/>
-        <input formControlName="name" type="text" placeholder="Name">
-        <input class="button" type="submit" value="Confirm">
+        <input formControlName="name" type="text" placeholder="{{ 'NAME' | translate }}">
+        <input class="button" type="submit" value="{{ 'CONFIRM' | translate }}">
     </form>
 </modal-window>
 
 <modal-window [showModal]="deleteCategoryModalShown" (onClose)="closeAllModals()">
     <div class="flex-column-container">
-        <h1>Delete category?</h1>
+        <h1>{{ 'DELETE_CATEGORY_QUESTION' | translate }}</h1>
         <hr/>
-        <span>This will make disappear all medicines that use that category!</span>
+        <span>{{ 'DELETE_CATEGORY_WARN' | translate }}</span>
         <div class="flex-row-container">
-            <a (click)="closeAllModals()" class="button white">Cancel</a>
-            <a (click)="confirmDelete()" class="button">Confirm</a>
+            <a (click)="closeAllModals()" class="button white">{{ 'CANCEL' | translate }}</a>
+            <a (click)="confirmDelete()" class="button">{{ 'CONFIRM' | translate }}</a>
         </div>
     </div>
 </modal-window>

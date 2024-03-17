@@ -1,15 +1,15 @@
 <div class="flex-row-container">
-    <a (click)="logout()" class="button">Log Out</a>
-    <a (click)="showChangePasswordModal()" class="button white">Change password</a>
+    <a (click)="logout()" class="button">{{ 'LOG_OUT' | translate }}</a>
+    <a (click)="showChangePasswordModal()" class="button white">{{ 'CHANGE_PASSWORD' | translate }}</a>
 </div>
 
 <modal-window [showModal]="changePasswordModalShown" (onClose)="closeAllModals()">
     <form (ngSubmit)="changePassword()" [formGroup]="changePasswordForm">
-        <h1>Change password</h1>
+        <h1>{{ 'CHANGE_PASSWORD' | translate }}</h1>
         <hr/>
-        <input formControlName="oldPassword" type="password" placeholder="Old password">
-        <input formControlName="newPassword" type="password" placeholder="New password">
-        <input formControlName="newPasswordConfirm" type="password" placeholder="New password confirm">
-        <input class="button" type="submit" value="Confirm change">
+        <input formControlName="oldPassword" type="password" placeholder="{{ 'OLD_PASSWORD' | translate }}">
+        <input formControlName="newPassword" type="password" placeholder="{{ 'NEW_PASSWORD' | translate }}">
+        <input formControlName="newPasswordConfirm" type="password" placeholder="{{ 'NEW_PASSWORD_CONFIRM' | translate }}">
+        <input class="button" type="submit" value="{{ 'CONFIRM_CHANGE' | translate }}">
     </form>
 </modal-window>
