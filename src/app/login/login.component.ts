@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private formBuilder : FormBuilder, private router : Router, private authService : AuthService, private loadingService : LoadingService, private languageService : LanguageService) { }
 
   Language = Language;
-  currentLanguage : Language = Language.UK;
+  currentLanguage : Language;
 
   ngOnInit() {
     this.form = this.formBuilder.group({
