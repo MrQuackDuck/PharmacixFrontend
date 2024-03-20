@@ -38,6 +38,11 @@ main {
     gap: 20px;
 }
 
+.disabled {
+    filter: brightness(60%);
+    pointer-events: none;
+}
+
 .new-section div, .new-section a, 
 .container table, .container aside {
     width: 100%;

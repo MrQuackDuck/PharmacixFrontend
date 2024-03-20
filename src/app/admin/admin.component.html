@@ -7,7 +7,7 @@
         <main>
             <div class="new-section">
                 <div class="empty"></div>
-                <a (click)="openNewModal()" class="button" draggable="false">{{ 'NEW' | translate }}</a>
+                <a [ngClass]="{'disabled': activeTab == TabType.Misc}" (click)="openNewModal()" class="button" draggable="false">{{ 'NEW' | translate }}</a>
             </div>
     
             <div class="container">
