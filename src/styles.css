@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: Inter;
-    src: url("/fonts/Inter.woff2");
+    src: url("assets/fonts/Inter.woff2");
 }
 
 html {

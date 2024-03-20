@@ -1,7 +1,7 @@
 <main>
     <div class="login-block">
         <img src="/assets/img/logo-full.svg" alt="Logo" draggable="false">
-        <div *ngIf="showError" class="error">Username/Password is not valid!</div>
+        <div *ngIf="showError" class="error">{{ 'LOGIN_ERROR' | translate }}</div>
         <form [formGroup]="form" (submit)="submit()">
             <input formControlName="username" type="text" placeholder="{{ 'USERNAME' | translate }}">
             <input formControlName="password" type="password" placeholder="{{ 'PASSWORD' | translate }}">
