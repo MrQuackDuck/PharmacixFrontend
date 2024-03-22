@@ -45,8 +45,7 @@ export class MedicamentCategoryRepositoryService {
   delete(medicamentCategoryModel : DeleteMedicamentCategoryModel) : Observable<boolean> { 
     let id = medicamentCategoryModel.id;
 
-    return this.httpClient.post<any>(`${API_URL}/API/MedicamentCategory/Delete`, 
-    { id },
+    return this.httpClient.delete<any>(`${API_URL}/API/MedicamentCategory/Delete/${id}`, 
     { withCredentials: true });
   }
 }

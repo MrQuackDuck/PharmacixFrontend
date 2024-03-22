@@ -51,8 +51,7 @@ export class MedicamentRepositoryService {
   delete(medicamentModel : DeleteMedicamentModel) : Observable<boolean> { 
     let id = medicamentModel.id;
 
-    return this.httpClient.post<any>(`${API_URL}/API/Medicament/Delete`, 
-    { id },
+    return this.httpClient.delete<any>(`${API_URL}/API/Medicament/Delete/${id}`,
     { withCredentials: true });
   }
 }

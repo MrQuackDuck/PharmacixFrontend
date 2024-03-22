@@ -36,8 +36,7 @@ export class UserRepositoryService {
   delete(userModel : DeleteUserModel) : Observable<boolean> { 
     let id = userModel.id;
 
-    return this.httpClient.post<any>(`${API_URL}/API/User/Delete`, 
-    { id },
+    return this.httpClient.delete<any>(`${API_URL}/API/User/Delete/${id}`, 
     { withCredentials: true });
   }
 }
