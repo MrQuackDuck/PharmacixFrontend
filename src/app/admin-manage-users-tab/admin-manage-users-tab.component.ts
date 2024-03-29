@@ -3,7 +3,6 @@ import { User } from '../models/user';
 import { UserRepositoryService } from '../services/user-repository.service';
 import { LoadingService } from '../services/loading.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DeleteUserModel } from '../models/requestModels/deleteUser';
 
 @Component({
   selector: 'admin-manage-users-tab',
@@ -71,11 +70,8 @@ export class AdminManageUsersTabComponent {
   confirmDelete() {
     this.loadingService.enableLoading();
     this.closeAllModals();
-
-    let model = new DeleteUserModel();
-    model.id = this.userToDelete.id;
     
-    this.userRepository.delete(model).subscribe(
+    this.userRepository.delete(this.userToDelete.id).subscribe(
       success => {
         this.updateData()
         this.onSuccess.emit();

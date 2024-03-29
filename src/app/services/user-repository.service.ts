@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { API_URL } from 'src/globals';
 import { CreateUserModel } from '../models/requestModels/createUser';
 import { HttpClient } from '@angular/common/http';
-import { DeleteUserModel } from '../models/requestModels/deleteUser';
 
 @Injectable({
   providedIn: 'root'
@@ -33,9 +32,7 @@ export class UserRepositoryService {
     { withCredentials: true });
   }
 
-  delete(userModel : DeleteUserModel) : Observable<boolean> { 
-    let id = userModel.id;
-
+  delete(id : number) : Observable<boolean> {
     return this.httpClient.delete<any>(`${API_URL}/API/User/Delete/${id}`, 
     { withCredentials: true });
   }

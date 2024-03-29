@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, Renderer2, SimpleChanges } from '@angular/core';
-import { ScrollService } from '../scroll.service';
+import { ScrollService } from '../services/scroll.service';
 
 @Component({
   selector: 'modal-window',

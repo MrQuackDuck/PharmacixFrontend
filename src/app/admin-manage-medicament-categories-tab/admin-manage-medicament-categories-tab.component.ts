@@ -3,7 +3,6 @@ import { MedicamentCategory } from '../models/medicamentCategory';
 import { MedicamentCategoryRepositoryService } from '../services/medicament-category-repository.service';
 import { LoadingService } from '../services/loading.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DeleteMedicamentCategoryModel } from '../models/requestModels/deleteMedicamentCategory';
 
 @Component({
   selector: 'admin-manage-medicament-categories-tab',
@@ -109,11 +108,8 @@ export class AdminManageMedicamentCategoriesTabComponent {
   confirmDelete() {
     this.loadingService.enableLoading();
     this.closeAllModals();
-
-    let model = new DeleteMedicamentCategoryModel();
-    model.id = this.categoryToDelete.id;
     
-    this.medicamentCategoryRepository.delete(model).subscribe(
+    this.medicamentCategoryRepository.delete(this.categoryToDelete.id).subscribe(
       success => {
         this.updateData()
         this.onSuccess.emit();

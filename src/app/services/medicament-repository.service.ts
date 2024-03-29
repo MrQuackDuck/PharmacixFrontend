@@ -5,7 +5,6 @@ import { API_URL } from 'src/globals';
 import { CreateMedicamentModel } from '../models/requestModels/createMedicament';
 import { EditMedicamentModel } from '../models/requestModels/editMedicament';
 import { Observable } from 'rxjs';
-import { DeleteMedicamentModel } from '../models/requestModels/deleteMedicament';
 
 @Injectable({
   providedIn: 'root'
@@ -48,9 +47,7 @@ export class MedicamentRepositoryService {
     { withCredentials: true });
   }
 
-  delete(medicamentModel : DeleteMedicamentModel) : Observable<boolean> { 
-    let id = medicamentModel.id;
-
+  delete(id : number) : Observable<boolean> {
     return this.httpClient.delete<any>(`${API_URL}/API/Medicament/Delete/${id}`,
     { withCredentials: true });
   }

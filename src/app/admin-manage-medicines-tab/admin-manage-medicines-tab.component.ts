@@ -5,7 +5,6 @@ import { LoadingService } from '../services/loading.service';
 import { MedicamentCategoryRepositoryService } from '../services/medicament-category-repository.service';
 import { MedicamentCategory } from '../models/medicamentCategory';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DeleteMedicamentModel } from '../models/requestModels/deleteMedicament';
 
 @Component({
   selector: 'admin-manage-medicines-tab',
@@ -113,11 +112,8 @@ export class AdminManageMedicinesTabComponent {
   confirmDelete() {
     this.loadingService.enableLoading();
     this.closeAllModals();
-
-    let model = new DeleteMedicamentModel();
-    model.id = this.medicamentToDelete.id;
     
-    this.medicamentRepository.delete(model).subscribe(
+    this.medicamentRepository.delete(this.medicamentToDelete.id).subscribe(
       success => {
         this.updateData()
         this.onSuccess.emit();
