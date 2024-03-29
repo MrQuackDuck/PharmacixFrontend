@@ -29,8 +29,4 @@ export class LanguageService {
     if (language === '') return 'EN';
     return language;
   }
-
-  getLanguageCode() { 
-    return Language[this.cookieService.get('language') ?? 0] ?? 'EN';
-  }
 }
