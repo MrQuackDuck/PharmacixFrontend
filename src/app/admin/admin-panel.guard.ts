@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
           return false;
         }
         
-        this.loadingService.disableLoading()
+        this.loadingService.disableLoading();
         return true;
       });
     }

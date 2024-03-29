@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async isAuthenticated(): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
+    return new Promise<boolean>((resolve) => {
       this.getUser().subscribe(
         success => resolve(true),
         fail => resolve(false)

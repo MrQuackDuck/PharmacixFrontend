@@ -7,7 +7,7 @@ import { ScrollService } from '../services/scroll.service';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-  constructor(private renderer: Renderer2, private scrollService : ScrollService) { }
+  constructor(private scrollService : ScrollService) { }
 
   @Input()
   showModal: boolean;
