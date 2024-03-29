@@ -3,6 +3,8 @@ import { LoadingService } from '../services/loading.service';
 import { MedicamentRepositoryService } from '../services/medicament-repository.service';
 import { Medicament } from '../models/medicament';
 import { TabType } from './tabType';
+import { Title } from '@angular/platform-browser';
+import { TranslatorService } from '../services/translator.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,13 +12,12 @@ import { TabType } from './tabType';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  constructor(private loadingService : LoadingService) { }
+  constructor(private loadingService : LoadingService, private translator : TranslatorService,
+    private titleService : Title) { }
 
   public activeTab : TabType;
 
   TabType = TabType;
-
-  medicines : Medicament[];
 
   successModalShown : boolean;
   failModalShown : boolean;
@@ -28,6 +29,7 @@ export class AdminComponent {
   ngOnInit() {
     this.activeTab = TabType.Medicines;
     this.loadingService.disableLoading();
+    this.titleService.setTitle("Pharmacix | " + this.translator.translate("ADMIN_PANEL"));
   }
 
   setTab(tab : TabType) {

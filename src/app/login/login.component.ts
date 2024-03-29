@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { LoadingService } from '../services/loading.service';
 import { LanguageService } from '../services/language.service';
 import { Language } from '../models/language';
+import { TranslatorService } from '../services/translator.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +14,13 @@ import { Language } from '../models/language';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  constructor(private formBuilder : FormBuilder, private router : Router,
+    private authService : AuthService, private loadingService : LoadingService, 
+    private languageService : LanguageService, private translator : TranslatorService,
+    private titleService : Title) { }
+
   form : FormGroup;
   showError : boolean = false;
-
-  constructor(private formBuilder : FormBuilder, private router : Router, private authService : AuthService, private loadingService : LoadingService, private languageService : LanguageService) { }
 
   Language = Language;
   currentLanguage : Language;
@@ -27,6 +32,7 @@ export class LoginComponent {
     });
 
     this.currentLanguage = this.languageService.getLanguage();
+    this.titleService.setTitle("Pharmacix | " + this.translator.translate("AUTHORIZATION"));
   }
 
   setLanguage(lang : Language) {

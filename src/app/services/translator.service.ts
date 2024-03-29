@@ -10,15 +10,14 @@ export class TranslatorService {
   constructor(private languageService : LanguageService) { }
 
   localization : any = localization;
-  currentLanguage : string;
 
   translate(value: string, ...params): string {
-    this.currentLanguage = Language[this.languageService.getLanguage()] ?? 'EN';
+    let currentLanguage = Language[this.languageService.getLanguage()] ?? 'EN';
 
-    // Getting the result depending on selected language
+    // Getting the result depending on the selected language
     // For example: 'USERNAME' with English language selected
     // will return 'Username' from our JSON
-    let result : string = this.localization.Localization[this.currentLanguage][value];
+    let result : string = this.localization.Localization[currentLanguage][value];
 
     // Interpolating the string with given parameters
     // "Hello, {0}" -> "Hello, Ivan" if zero argument was "Ivan"

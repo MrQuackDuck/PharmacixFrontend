@@ -12,13 +12,8 @@ export class ModalComponent {
   @Input()
   showModal: boolean;
 
-  @Input()
-  noPadding : boolean;
-
   @Output()
   onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  scrollY : number;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['showModal'] && changes['showModal'].currentValue === true) {

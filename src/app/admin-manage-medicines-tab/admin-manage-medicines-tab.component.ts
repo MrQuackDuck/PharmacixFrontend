@@ -12,7 +12,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./admin-manage-medicines-tab.component.css']
 })
 export class AdminManageMedicinesTabComponent {
-  constructor(private medicamentRepository : MedicamentRepositoryService, private medicamentCategoryRepository : MedicamentCategoryRepositoryService, private loadingService : LoadingService, private formBuilder : FormBuilder) { }
+  constructor(private medicamentRepository : MedicamentRepositoryService, 
+    private medicamentCategoryRepository : MedicamentCategoryRepositoryService, 
+    private loadingService : LoadingService, private formBuilder : FormBuilder) { }
 
   @Output()
   onModalClose: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -38,8 +40,6 @@ export class AdminManageMedicinesTabComponent {
   // Used to store object that is maybe going
   // to be deleted (if user will confirm his choice in modal window)
   medicamentToDelete : Medicament;
-
-  category = null;
 
   ngOnInit() {
     this.updateData();
@@ -141,7 +141,9 @@ export class AdminManageMedicinesTabComponent {
         title: new FormControl(null, Validators.required),
         price: new FormControl(null, Validators.required),
         amount: new FormControl(null, Validators.required),
-        categoryId: new FormControl(this.medicamentCategories.length == 0 ? 0 : this.medicamentCategories[0].id, Validators.required),
+        categoryId: new FormControl(
+          this.medicamentCategories.length == 0 ? 0 
+          : this.medicamentCategories[0].id, Validators.required),
       });
     })
 
