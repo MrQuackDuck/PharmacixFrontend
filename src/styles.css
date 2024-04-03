@@ -177,7 +177,7 @@ modal-window form input {
     width: 100%;
 }
 
-modal-window form.ng-submitted .ng-invalid {
+modal-window form.ng-submitted .ng-invalid.ng-dirty {
     border: 2px solid var(--bright-red);
 }
 

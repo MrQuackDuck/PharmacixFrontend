@@ -43,7 +43,7 @@
             </select>
         </div>
         <div class="flex-row-container">
-            <input pattern="^\d+$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
+            <input pattern="^\d+(\.\d+)?$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
             <input pattern="^\d+$" formControlName="amount" type="text" placeholder="{{ 'AMOUNT' | translate }}">
         </div>
         <input class="button" type="submit" value="{{ 'CREATE' | translate }}">
@@ -61,7 +61,7 @@
             </select>
         </div>
         <div class="flex-row-container">
-            <input pattern="^\d+$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
+            <input pattern="^\d+(\.\d+)?$" formControlName="price" type="text" placeholder="{{ 'PRICE_UAH' | translate }}">
             <input pattern="^\d+$" formControlName="amount" type="text" placeholder="{{ 'AMOUNT' | translate }}">
         </div>
         <input class="button" type="submit" value="{{ 'CONFIRM' | translate }}">
